@@ -5,7 +5,8 @@
   "main": "./lib/ReactCliComponent.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack"
+    "build": "webpack",
+    "start:dev": "webpack-dev-server --config webpack.development.config.js"
   },
   "repository": {
     "type": "git",
@@ -26,15 +27,17 @@
   },
   "homepage": "https://github.com/podrezo/react-cli#readme",
   "dependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react": "^16.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "react-dom": "^16.12.0",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.3"
   }
 }
