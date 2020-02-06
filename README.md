@@ -22,3 +22,14 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
+## Features
+
+* Stylable terminal that accepts synchronous commands
+
+## Feature backlog (not implemented yet)
+
+* Async commands
+* Argument parsing
+* Automatically clearing buffer
+* Supporting ANSI colors
