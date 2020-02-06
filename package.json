@@ -1,0 +1,27 @@
+{
+  "name": "react-cli",
+  "version": "1.0.0",
+  "description": "A ReactJS-based CLI component",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/podrezo/react-cli.git"
+  },
+  "keywords": [
+    "reactjs",
+    "react",
+    "cli",
+    "command",
+    "line",
+    "terminal"
+  ],
+  "author": "Petro Podrezo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/podrezo/react-cli/issues"
+  },
+  "homepage": "https://github.com/podrezo/react-cli#readme"
+}
