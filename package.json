@@ -2,9 +2,10 @@
   "name": "react-cli",
   "version": "1.0.0",
   "description": "A ReactJS-based CLI component",
-  "main": "index.js",
+  "main": "./lib/ReactCliComponent.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,17 @@
   "bugs": {
     "url": "https://github.com/podrezo/react-cli/issues"
   },
-  "homepage": "https://github.com/podrezo/react-cli#readme"
+  "homepage": "https://github.com/podrezo/react-cli#readme",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
 }
