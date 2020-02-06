@@ -91,7 +91,7 @@ class ReactCliComponent extends React.Component {
     return (
       <div style={styles.cli} onClick={this._focusPrompt} className="react_cli">
         {lines}
-        {this.props.prompt} <span spellCheck="true" contentEditable="true" style={{minWidth: '10px'}} onKeyDown={this._handleKeyDown} ref={this.promptRef}></span>
+        {this.props.prompt} <span spellCheck="false" contentEditable="true" onKeyDown={this._handleKeyDown} ref={this.promptRef}></span>
       </div>
     );
   }
