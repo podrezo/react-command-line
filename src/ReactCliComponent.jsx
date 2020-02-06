@@ -2,51 +2,85 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  label: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  styles: PropTypes.object
+  messages: PropTypes.objectOf(PropTypes.string),
+  commands: PropTypes.object.isRequired,
+  prompt: PropTypes.string,
+  autoFocus: PropTypes.bool
 }
 
 const defaultProps = {
-  prompt: '> '
+  prompt: '> ',
+  commands: {},
+  messages: {
+    'WELCOME_MESSAGE': '',
+    'INVALID_COMMAND': 'Invalid command.'
+  },
+  autoFocus: true
 }
+
 
 class ReactCliComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      buffer: ['Welcome!']
+      buffer: this.props.messages['WELCOME_MESSAGE'].split("\n")
     }
     this.promptRef = React.createRef();
     this._focusPrompt = this._focusPrompt.bind(this);
+    this._appendToBufferArray = this._appendToBufferArray.bind(this);
     this._handleKeyDown = this._handleKeyDown.bind(this);
+    this._handleEnter = this._handleEnter.bind(this);
   }
 
   _focusPrompt() {
     this.promptRef.current.focus();
   }
 
-  _handleKeyDown(e) {
-    if (e.key === 'Enter') {
-      const command = this.promptRef.current.innerText;
-      this.setState({
-        buffer: [...this.state.buffer, command]
-      })
-      this.promptRef.current.innerText = '';
-      console.log(`Execute command: ${command}`);
+  _appendToBufferArray(str) {
+    this.tempBuffer = [... this.tempBuffer, ... str.split("\n")];
+  }
+
+  _handleEnter() {
+    this._appendToBufferArray(this.props.prompt + this.promptRef.current.innerText);
+    // TODO: Parse out the arguments
+    const input = this.promptRef.current.innerText.trim();
+    const commandNameToRun = /^([^\s]*)\s?.*$/.exec(input)?.pop();
+    // reset the prompt
+    this.promptRef.current.innerText = '';
+    // execute the command
+    const command = this.props.commands[commandNameToRun];
+    if(typeof command === 'undefined') {
+      this._appendToBufferArray(this.props.messages['INVALID_COMMAND']);
+      return;
+    }
+    if(command.fn.constructor.name === 'AsyncFunction') {
+      // TODO: Async functions should be supported
+      throw new Error('Async commands are not supported yet');
+      // command.fn().then(result => {
+      //   this.setState({
+      //     buffer: [...this.state.buffer, result]
+      //   });
+      // });
+    } else {
+      const result = command.fn(input);
+      this._appendToBufferArray(result);
     }
   }
 
-  // _handlePromptChange(e) {
-  //   console.log(this.promptRef);
-  //   this.setState({
-  //     promptValue: this.promptRef.innerText
-  //   })
-  // }
+  _handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      this.tempBuffer = [...this.state.buffer];
+      this._handleEnter();
+      this.setState({
+        buffer: this.tempBuffer
+      });
+    }
+  }
   
   componentDidMount() {
-    //autofocus
-    this._focusPrompt();
+    if(this.props.autoFocus) {
+      this._focusPrompt();
+    }
   }
 
   render() {
