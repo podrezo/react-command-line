@@ -2,11 +2,13 @@
 
 ReactCLI is a ReactJS component that provides a simple way to present a command line interface to your user in your web app.
 
+You can view a [live demo here](https://podrezo.github.io/react-cli/demo/).
+
 ## Example Usage
 
 The following will produce a terminal where the user can type "hello" to see a message containing the arguments passed to the function.
 
-```js
+```jsx
 const commands = {
   hello: {
     fn: args => {
