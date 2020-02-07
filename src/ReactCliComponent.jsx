@@ -69,6 +69,7 @@ class ReactCliComponent extends React.Component {
 
   _handleKeyDown(e) {
     if (e.key === 'Enter') {
+      e.preventDefault();
       this.tempBuffer = [...this.state.buffer];
       this._handleEnter();
       this.setState({
@@ -91,7 +92,7 @@ class ReactCliComponent extends React.Component {
     return (
       <div style={styles.cli} onClick={this._focusPrompt} className="react_cli">
         {lines}
-        {this.props.prompt} <span spellCheck="false" contentEditable="true" onKeyDown={this._handleKeyDown} ref={this.promptRef}></span>
+        <p><span>{this.props.prompt}</span><span spellCheck="false" contentEditable="true" onKeyDown={this._handleKeyDown} ref={this.promptRef} style={{display: 'inline-block', verticalAlign: 'top'}}></span></p>
       </div>
     );
   }
