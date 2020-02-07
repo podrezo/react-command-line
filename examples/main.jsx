@@ -11,23 +11,25 @@ const commands = {
     fn: args => {
       return `Supported commands: foo
 
-foo [args]: Echoes 'bar' and the arguments.`
+foo [args]: Echoes 'bar' and the arguments.
+sleep: Waits for 5 seconds, then returns with a message.`
     }
   },
   foo: {
     fn: args => {
-      return `bar. Arguments were: ${args}`;
+      return `bar. Arguments were: [${args.join(', ')}]`;
     }
   },
-  // sleep: {
-  //   fn: async args => {
-  //     let deferred = Promise.defer();
-  //     setTimeout(() => {
-  //       deferred.resolve();
-  //     }, 1000);
-  //     return deferred.promise;
-  //   }
-  // }
+  sleep: {
+    fn: args => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('done!');
+        }, 5000);
+      });
+    },
+    isAsync: true
+  }
 }
 
 ReactDOM.render(

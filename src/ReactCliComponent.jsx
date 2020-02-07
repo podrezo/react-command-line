@@ -23,7 +23,8 @@ class ReactCliComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      buffer: this.props.messages['WELCOME_MESSAGE'].split("\n")
+      buffer: this.props.messages['WELCOME_MESSAGE'].split("\n"),
+      typingAllowed: true
     }
     this.promptRef = React.createRef();
     this._focusPrompt = this._focusPrompt.bind(this);
@@ -42,7 +43,6 @@ class ReactCliComponent extends React.Component {
 
   _handleEnter() {
     this._appendToBufferArray(this.props.prompt + this.promptRef.current.innerText);
-    // TODO: Parse out the arguments
     const input = this.promptRef.current.innerText.trim();
     const commandNameToRun = /^([^\s]*)\s?.*$/.exec(input)?.pop();
     // reset the prompt
@@ -53,16 +53,21 @@ class ReactCliComponent extends React.Component {
       this._appendToBufferArray(this.props.messages['INVALID_COMMAND']);
       return;
     }
-    if(command.fn.constructor.name === 'AsyncFunction') {
-      // TODO: Async functions should be supported
-      throw new Error('Async commands are not supported yet');
-      // command.fn().then(result => {
-      //   this.setState({
-      //     buffer: [...this.state.buffer, result]
-      //   });
-      // });
+    // Parse out arguments
+    const args = input.split(/\s+/).slice(1);
+    if(command.isAsync) {
+      // block console while async request is running
+      this.setState({
+        typingAllowed: false
+      });
+      command.fn(args).then(result => {
+        this.setState({
+          typingAllowed: true,
+          buffer: [...this.state.buffer, result]
+        });
+      });
     } else {
-      const result = command.fn(input);
+      const result = command.fn(args);
       this._appendToBufferArray(result);
     }
   }
@@ -92,7 +97,7 @@ class ReactCliComponent extends React.Component {
     return (
       <div style={styles.cli} onClick={this._focusPrompt} className="react_cli">
         {lines}
-        <p><span>{this.props.prompt}</span><span spellCheck="false" contentEditable="true" onKeyDown={this._handleKeyDown} ref={this.promptRef} style={{display: 'inline-block', verticalAlign: 'top'}}></span></p>
+        <p style={{display: this.state.typingAllowed ? 'block' : 'none'}}><span>{this.props.prompt}</span><span spellCheck="false" contentEditable="true" onKeyDown={this._handleKeyDown} ref={this.promptRef} style={{display: 'inline-block', verticalAlign: 'top'}}></span></p>
       </div>
     );
   }
