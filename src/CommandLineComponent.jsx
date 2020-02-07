@@ -19,7 +19,7 @@ const defaultProps = {
 }
 
 
-class ReactCliComponent extends React.Component {
+class CommandLine extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -103,7 +103,7 @@ class ReactCliComponent extends React.Component {
   }
 }
 
-ReactCliComponent.propTypes = propTypes;
-ReactCliComponent.defaultProps = defaultProps;
+CommandLine.propTypes = propTypes;
+CommandLine.defaultProps = defaultProps;
 
-export default ReactCliComponent;
+export default CommandLine;

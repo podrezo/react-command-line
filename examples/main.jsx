@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactCliComponent from '../src/ReactCliComponent.jsx';
+import CommandLine from '../src/CommandLineComponent.jsx';
 
 const messages = {
   'WELCOME_MESSAGE': 'Welcome! Type "help" to see a list of commands.',
@@ -33,6 +33,6 @@ sleep: Waits for 5 seconds, then returns with a message.`
 }
 
 ReactDOM.render(
-  <ReactCliComponent commands={commands} messages={messages} />,
+  <CommandLine commands={commands} messages={messages} />,
   document.getElementById('root')
 );

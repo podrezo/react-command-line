@@ -2,10 +2,10 @@ var path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './src/ReactCliComponent.jsx',
+  entry: './src/CommandLineComponent.jsx',
   output: {
     path: path.resolve('lib'),
-    filename: 'ReactCliComponent.js',
+    filename: 'CommandLineComponent.js',
     libraryTarget: 'commonjs2'
   },
   module: {

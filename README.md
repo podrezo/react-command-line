@@ -1,8 +1,16 @@
-# react-cli
+# react-command-line
 
 ReactCLI is a ReactJS component that provides a simple way to present a command line interface to your user in your web app.
 
-You can view a [live demo here](https://podrezo.github.io/react-cli/demo/).
+You can view a [live demo here](https://podrezo.github.io/react-command-line/demo/).
+
+## Installation
+
+```bash
+npm install --save react-command-line
+# or
+yarn add react-command-line
+```
 
 ## Example Usage
 
@@ -20,18 +28,16 @@ const commands = {
 // ...
 
 ReactDOM.render(
-  <ReactCliComponent commands={commands} />,
+  <CommandLine commands={commands} />,
   document.getElementById('root')
 );
 ```
 
 ## Features
 
-* Stylable terminal that accepts synchronous commands
+* Stylable terminal that accepts synchronous and asynchronous commands
 
-## Feature backlog (not implemented yet)
+## Ideas for future features
 
-* Async commands
-* Argument parsing
-* Automatically clearing buffer
+* Automatically clearing buffer past certain number of lines
 * Supporting ANSI colors
