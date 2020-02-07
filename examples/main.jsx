@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactCliComponent from '../../src/ReactCliComponent.jsx';
+import ReactCliComponent from '../src/ReactCliComponent.jsx';
 
 const messages = {
   'WELCOME_MESSAGE': 'Welcome! Type "help" to see a list of commands.',

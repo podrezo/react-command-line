@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "start:dev": "webpack-dev-server --config webpack.development.config.js"
+    "start:dev": "webpack-dev-server --config webpack.development.config.js",
+    "build_demo": "webpack --config webpack.development.config.js"
   },
   "repository": {
     "type": "git",
