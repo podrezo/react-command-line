@@ -1,6 +1,6 @@
 {
   "name": "react-command-line",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A ReactJS-based CLI component",
   "main": "./lib/ReactCliComponent.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/podrezo/react-cli.git"
+    "url": "git+https://github.com/podrezo/react-command-line.git"
   },
   "keywords": [
     "reactjs",
@@ -24,9 +24,9 @@
   "author": "Petro Podrezo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/podrezo/react-cli/issues"
+    "url": "https://github.com/podrezo/react-command-line/issues"
   },
-  "homepage": "https://github.com/podrezo/react-cli#readme",
+  "homepage": "https://github.com/podrezo/react-command-line#readme",
   "dependencies": {
     "react": "^16.12.0"
   },
